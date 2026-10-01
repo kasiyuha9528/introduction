@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fff8ee;
+  --surface: #ffffff;
+  --ink: #3a2414;
+  --muted: #7a5a44;
+  --brand: #ff8a1f;
+  --brand-deep: #c25400;
+  --sun: #ffc83d;
+  --mint: #3cc8a8;
+  --line: #3a2414;
+  --shadow: #3a2414;
+  --dot: #ffd9b0;
+  /* 背景色に関係なくオレンジ・黄色の上に乗せる文字色 */
+  --on-brand: #2a1608;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cream: #22160d;
+    --surface: #2e1f14;
+    --ink: #fff1e0;
+    --muted: #d9bfa6;
+    --brand: #ff9a3c;
+    --brand-deep: #ffb470;
+    --sun: #ffd15c;
+    --mint: #4fd8b8;
+    --line: #f5d9bc;
+    --shadow: #ff9a3c;
+    --dot: #3a2718;
+  }
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-sun: var(--sun);
+  --color-mint: var(--mint);
+  --color-line: var(--line);
+  --color-on-brand: var(--on-brand);
+  --font-sans: var(--font-zen-maru), "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+/* ずらした影（ポップなカード用） */
+@utility shadow-pop {
+  box-shadow: 6px 6px 0 0 var(--shadow);
+}
+@utility shadow-pop-sm {
+  box-shadow: 3px 3px 0 0 var(--shadow);
+}
+
+/* 水玉の背景 */
+@utility bg-dots {
+  background-image: radial-gradient(var(--dot) 2.5px, transparent 2.5px);
+  background-size: 22px 22px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* スクロールでふわっと表示 */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}
