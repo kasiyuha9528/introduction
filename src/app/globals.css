@@ -14,22 +14,8 @@
   --dot: #ffd9b0;
   /* 背景色に関係なくオレンジ・黄色の上に乗せる文字色 */
   --on-brand: #2a1608;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cream: #22160d;
-    --surface: #2e1f14;
-    --ink: #fff1e0;
-    --muted: #d9bfa6;
-    --brand: #ff9a3c;
-    --brand-deep: #ffb470;
-    --sun: #ffd15c;
-    --mint: #4fd8b8;
-    --line: #f5d9bc;
-    --shadow: #ff9a3c;
-    --dot: #3a2718;
-  }
+  /* OSがダークモードでも常にライト表示にする */
+  color-scheme: light;
 }
 
 @theme inline {
