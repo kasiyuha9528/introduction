@@ -1,4 +1,5 @@
 import { profile } from "@/data/profile";
+import { StudyIllustration } from "@/components/StudyIllustration";
 
 export function Hero() {
   return (
@@ -16,8 +17,8 @@ export function Hero() {
         className="absolute -bottom-20 -left-12 h-56 w-56 rounded-full bg-mint opacity-60"
       />
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-10 px-4 py-20 sm:px-6 md:flex-row md:justify-between md:py-28">
-        <div className="text-center md:text-left">
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:flex-row lg:justify-between lg:py-28">
+        <div className="text-center lg:text-left">
           <p className="inline-block rounded-full border-[3px] border-line bg-surface px-4 py-1 text-sm font-bold">
             👋 はじめまして！
           </p>
@@ -46,12 +47,7 @@ export function Hero() {
           </a>
         </div>
 
-        <div
-          aria-hidden
-          className="flex h-52 w-52 shrink-0 animate-[bounce_3s_ease-in-out_infinite] items-center justify-center rounded-full border-[3px] border-line bg-brand text-8xl shadow-pop sm:h-64 sm:w-64"
-        >
-          🍊
-        </div>
+        <StudyIllustration className="h-auto w-64 shrink-0 sm:w-80 lg:w-[22rem] xl:w-96" />
       </div>
     </section>
   );
