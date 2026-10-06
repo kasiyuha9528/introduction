@@ -5,9 +5,11 @@ import "./globals.css";
 
 const zenMaru = Zen_Maru_Gothic({
   variable: "--font-zen-maru",
-  weight: ["400", "500", "700", "900"],
+  // 日本語フォントは太さごとに大量のファイルに分かれるため、見出し用の2種類だけ読み込む
+  weight: ["700", "900"],
   subsets: ["latin"],
-  display: "swap",
+  // 読み込みが間に合わなければ標準フォントのまま表示し、後から差し替えない（LCP対策）
+  display: "optional",
 });
 
 const description = `${profile.name}の自己紹介サイト。できること・作ったもの・勉強中のものを紹介しています。`;

@@ -29,7 +29,17 @@
   --color-mint: var(--mint);
   --color-line: var(--line);
   --color-on-brand: var(--on-brand);
-  --font-sans: var(--font-zen-maru), "Hiragino Maru Gothic ProN", sans-serif;
+  /* 本文はOS標準フォント、太字（見出し・強調）だけ丸ゴシック */
+  --font-sans:
+    "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo",
+    system-ui, sans-serif;
+  --font-display: var(--font-zen-maru), "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+@layer base {
+  :where(h1, h2, h3, h4, strong, b, .font-bold, .font-black) {
+    font-family: var(--font-display);
+  }
 }
 
 /* ずらした影（ポップなカード用） */
@@ -38,6 +48,28 @@
 }
 @utility shadow-pop-sm {
   box-shadow: 3px 3px 0 0 var(--shadow);
+}
+
+/* 共通カード（枠線・角丸・ずらした影） */
+@utility card {
+  border-radius: var(--radius-3xl);
+  border: 3px solid var(--line);
+  background-color: var(--surface);
+  box-shadow: 6px 6px 0 0 var(--shadow);
+}
+/* カードの内側の余白（全カードでそろえる） */
+@utility card-body {
+  padding: --spacing(6);
+  @variant sm {
+    padding: --spacing(8);
+  }
+}
+/* ホバーで少し浮く */
+@utility card-hover {
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: translateY(-4px);
+  }
 }
 
 /* 水玉の背景 */
