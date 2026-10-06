@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "fonts": "node scripts/subset-font.mjs",
+    "prebuild": "npm run fonts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -20,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
+    "subset-font": "^2.9.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

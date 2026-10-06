@@ -29,17 +29,7 @@
   --color-mint: var(--mint);
   --color-line: var(--line);
   --color-on-brand: var(--on-brand);
-  /* 本文はOS標準フォント、太字（見出し・強調）だけ丸ゴシック */
-  --font-sans:
-    "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo",
-    system-ui, sans-serif;
-  --font-display: var(--font-zen-maru), "Hiragino Maru Gothic ProN", sans-serif;
-}
-
-@layer base {
-  :where(h1, h2, h3, h4, strong, b, .font-bold, .font-black) {
-    font-family: var(--font-display);
-  }
+  --font-sans: var(--font-zen-maru), "Hiragino Maru Gothic ProN", sans-serif;
 }
 
 /* ずらした影（ポップなカード用） */

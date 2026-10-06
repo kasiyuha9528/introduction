@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Zen_Maru_Gothic } from "next/font/google";
+import localFont from "next/font/local";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
-const zenMaru = Zen_Maru_Gothic({
+// サイトで使う文字だけに絞ったフォント（scripts/subset-font.mjs で生成）
+const zenMaru = localFont({
   variable: "--font-zen-maru",
-  // 日本語フォントは太さごとに大量のファイルに分かれるため、見出し用の2種類だけ読み込む
-  weight: ["700", "900"],
-  subsets: ["latin"],
-  // 読み込みが間に合わなければ標準フォントのまま表示し、後から差し替えない（LCP対策）
-  display: "optional",
+  src: [
+    { path: "./fonts/ZenMaruGothic-Regular.woff2", weight: "400" },
+    { path: "./fonts/ZenMaruGothic-Bold.woff2", weight: "700" },
+    { path: "./fonts/ZenMaruGothic-Black.woff2", weight: "900" },
+  ],
+  display: "swap",
 });
 
 const description = `${profile.name}の自己紹介サイト。できること・作ったもの・勉強中のものを紹介しています。`;
