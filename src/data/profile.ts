@@ -11,6 +11,60 @@ export const profile = {
   github: "https://github.com/kasiyuha9528",
 };
 
+export type Career = {
+  period: string;
+  kind: "work" | "study";
+  title: string;
+  description: string;
+};
+
+/** 経歴（古い順） */
+export const careers: Career[] = [
+  {
+    period: "2012 – 2017",
+    kind: "work",
+    title: "飲食店 店長",
+    description: "店舗運営全体のマネジメント業務を担当。",
+  },
+  {
+    period: "2017 – 2021",
+    kind: "work",
+    title: "農業",
+    description: "野菜の生産・管理・販売を担当。",
+  },
+  {
+    period: "2021 – 2023",
+    kind: "work",
+    title: "自動車部品の営業",
+    description:
+      "既存顧客へのルート営業と、取引が途絶えていた取引先との取引再開に取り組む。",
+  },
+  {
+    period: "2023 – 現在",
+    kind: "work",
+    title: "製造業の事務",
+    description: "受注業務、一部経理業務、業務改善、社内へのAIの普及・定着を担当。",
+  },
+  {
+    period: "2026",
+    kind: "study",
+    title: "Web制作の学習を開始",
+    description: "AIアシスタント（Claude Code）と一緒に、Web制作の勉強をスタート。",
+  },
+  {
+    period: "2026",
+    kind: "study",
+    title: "美容室「凪 -nagi-」LPを制作",
+    description: "HTML／CSS／JavaScript で、はじめてのランディングページを制作。",
+  },
+  {
+    period: "2026",
+    kind: "study",
+    title: "自己紹介サイトを公開",
+    description: "Next.js と Tailwind CSS でこのサイトを制作し、Vercel で公開。",
+  },
+];
+
 export type Skill = {
   category: string;
   icon: string;
@@ -129,6 +183,7 @@ export const learnings: Learning[] = [
 
 export const navItems = [
   { href: "#about", label: "About" },
+  { href: "#career", label: "Career" },
   { href: "#skills", label: "Skills" },
   { href: "#works", label: "Works" },
   { href: "#learning", label: "Learning" },
