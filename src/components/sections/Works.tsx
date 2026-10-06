@@ -11,7 +11,7 @@ const thumbColor: Record<Work["color"], string> = {
 export function Works() {
   return (
     <Section id="works" en="WORKS" ja="作ったもの" width="wide">
-      <ul className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mx-auto grid max-w-4xl gap-6 sm:gap-8 md:grid-cols-2">
         {works.map((work, i) => (
           <li key={work.title}>
             <Reveal delay={i * 80} className="h-full">

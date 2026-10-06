@@ -134,15 +134,6 @@ export const works: Work[] = [
     link: { label: "GitHub", href: "https://github.com/kasiyuha9528/test2" },
   },
   {
-    title: "サンプル発送依頼システム 要件定義",
-    description:
-      "取引先へ商品サンプルを発送するための社内申請Webアプリの要件定義。申請→部門長→受付→二次承認→総務部長→手配待ちの多段承認フロー、差し戻し、ロール兼任、マスタ管理などを整理。",
-    tags: ["要件定義", "Markdown"],
-    icon: "📦",
-    color: "mint",
-    link: { label: "GitHub", href: "https://github.com/kasiyuha9528/test" },
-  },
-  {
     title: "自己紹介サイト（このサイト）",
     description:
       "自分のできること・作ったもの・勉強中のことを紹介するポートフォリオサイト。オレンジを基調にしたポップなデザイン。",
