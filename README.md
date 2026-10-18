@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 自己紹介サイト
 
-## Getting Started
+プロフィール・経歴・できること・作ったもの・勉強中のことを紹介する、1ページ構成の個人サイトです。Claude Code（AIアシスタント）と一緒に、要件整理から実装までを進めました。
 
-First, run the development server:
+## 1. プロジェクトの概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **目的**: 初めて訪れた人が、短時間で「どんな人か」「何ができるか」「どう連絡すればよいか」を把握できること。
+- **想定閲覧者**: 採用担当者・企業 / 仕事の依頼者 / 知人・SNS経由の訪問者。
+- **構成**: 縦スクロールの1ページ。ヘッダーから各セクションへページ内リンクで移動する。
+  - Hero / About / Career / Skills / Works / Learning / Contact
+- 詳細な要件は [docs/requirements.md](docs/requirements.md) を参照。
+
+## 2. 使用技術
+
+| 技術 | バージョン | 用途 |
+|---|---|---|
+| Next.js (App Router) | 16.3.8 | サイトの組み立て・配信 |
+| React | 19.2.8 | 画面を部品の組み合わせで構築 |
+| TypeScript | 5.x | 型による誤りの検出 |
+| Tailwind CSS | 4.x | スタイリング |
+| ESLint | 9.x | コードの静的チェック |
+| subset-font | 2.9.x | 日本語フォントの軽量化 |
+| Zen Maru Gothic | - | 日本語フォント（`next/font/local` で読み込み） |
+
+## 3. 全体のフロー
+
+### 開発の流れ
+
+1. 要件整理（想定閲覧者・掲載内容・構成を決める）
+2. サイトの土台を作る
+3. 見た目の調整（背景色、ヒーローのイラスト、共通スタイル化）
+4. 内容の追加（経歴セクション、Works の整理）
+5. 表示速度の改善（フォントのサブセット化）
+6. 計測（Lighthouse）とドキュメント整備
+
+### 画面が表示されるまで
+
+1. ブラウザがページを要求する。
+2. Next.js が部品を集めて1ページ分の HTML を組み立てる（ビルド時に静的生成）。
+3. HTML・CSS・少量の JavaScript・フォントがブラウザに届く。
+4. ブラウザが描画する。スクロール時のフェードイン演出は届いたあとにブラウザ側で動く。
+
+### ファイル構成
+
+```
+src/
+├─ app/
+│   ├─ layout.tsx      ページ全体の土台（題名・フォント）
+│   ├─ page.tsx        セクションを並べる順番
+│   └─ globals.css     共通の見た目
+├─ components/         Header / Footer / 共通部品 / sections/（各セクション）
+└─ data/
+    └─ profile.ts      名前・経歴・連絡先などの中身（データ）
+scripts/
+└─ subset-font.mjs     フォントのサブセット化
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 動かし方
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev     # 開発用（http://localhost:3000）
+npm run build   # 公開用に組み立てる（事前にフォントを自動生成）
+npm start       # 組み立てたものを起動
+npm run lint    # コードチェック
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 4. 学んだ事
 
-## Learn More
+詳細は [docs/README.md](docs/README.md) にまとめています。要点は次のとおりです。
 
-To learn more about Next.js, take a look at the following resources:
+- **作る前に整理する**: 閲覧者と掲載内容を先に決めると、迷いにくく、AIへの指示も具体的になる。
+- **データと見た目を分ける**: 内容の変更は `profile.ts` の書き換えだけで済む。
+- **共通部品にまとめる**: 同じ見た目を1か所で管理でき、修正が楽になる。
+- **日本語フォントは重い**: 使う文字だけに絞るサブセット化で軽くできる。
+- **Git は意味のある単位で記録する**: 日本語のメッセージで「何をしたか」を残す。不要なファイルは `.gitignore` へ。
+- **AIとの進め方**: 目的と条件を先に伝え、小さな変更ごとに確認する。Next.js は版によって仕様が変わるため、公式ドキュメント（`node_modules/next/dist/docs/`）を確認してから書く。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 5. こだわった点
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **更新しやすさ**: 名前・経歴・連絡先を `src/data/profile.ts` に集約し、見た目の部品と分離した。
+- **共通部品化**: セクションの外枠（`Section`）や見出し（`SectionHeading`）、カードのスタイルを共通化し、直す場所を1か所にした。
+- **表示速度**: 日本語フォントをサイトで使う文字だけに絞り（`scripts/subset-font.mjs`）、`prebuild` でビルド前に自動生成。`display: "swap"` で読み込み中も文字を先に表示する。
+- **見せ方**: スクロールに合わせて要素がふわっと現れる演出（`Reveal`）、イラストのヒーロー、Works の2列カード表示。
+- **要件先行**: 先に要件定義書を作り、それを指示書として制作を進めた。
 
-## Deploy on Vercel
+## 6. 改善点
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 制作物の詳細ページ（`/works/[slug]`）を追加する。
+- 一部イラストの背景がイラストと近い配色をしているので見やすい色に改善。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 7. 検証結果
+
+Lighthouse 12.8.2 で、本番ビルド（`npm run build` → `npm start`）に対して計測した（ローカル環境・ヘッドレス Chrome、計測日 2026-10-18）。
+
+### スコア
+
+| カテゴリ | モバイル | デスクトップ |
+|---|---|---|
+| Performance | 93 | 100 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
+
+### パフォーマンス指標
+
+| 指標 | モバイル | デスクトップ |
+|---|---|---|
+| First Contentful Paint | 1.0 s | 0.3 s |
+| Largest Contentful Paint | 3.2 s | 0.7 s |
+| Total Blocking Time | 80 ms | 0 ms |
+| Cumulative Layout Shift | 0 | 0 |
+| Speed Index | 2.2 s | 0.4 s |
+| 転送サイズ合計 | 376 KiB | 376 KiB |
+
+### 所見
+
+- 4カテゴリとも高得点で、レイアウトのずれ（CLS）は発生していない。
+- モバイルの Performance が 93 にとどまる主因は LCP（3.2 s）。改善点に記載した。
+- `npm run build` は成功し、静的ページとして生成されることを確認した。
+- 計測は端末・回線の条件で変動するため、数値は目安。
