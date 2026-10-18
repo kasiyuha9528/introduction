@@ -111,10 +111,3 @@ Lighthouse 12.8.2 で、本番ビルド（`npm run build` → `npm start`）に�
 | Cumulative Layout Shift | 0 | 0 |
 | Speed Index | 2.2 s | 0.4 s |
 | 転送サイズ合計 | 376 KiB | 376 KiB |
-
-### 所見
-
-- 4カテゴリとも高得点で、レイアウトのずれ（CLS）は発生していない。
-- モバイルの Performance が 93 にとどまる主因は LCP（3.2 s）。改善点に記載した。
-- `npm run build` は成功し、静的ページとして生成されることを確認した。
-- 計測は端末・回線の条件で変動するため、数値は目安。
