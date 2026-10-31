@@ -1,5 +1,5 @@
 export const profile = {
-  name: "kasiyuha9528",
+  name: "有里　皆",
   role: "Web制作・業務アプリ設計を学ぶ駆け出しクリエイター",
   catchcopy: ["「つくりたい」を、", "カタチにする。"],
   about: [
